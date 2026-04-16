@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ─── Design Tokens ──────────────────────────────────────────────────────── */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --background: #fafafa;  /* zinc-50 — 본문 배경 */
+  --foreground: #18181b;  /* zinc-900 — 기본 텍스트 */
+  --surface: #ffffff;     /* 카드/컨텐츠 영역 배경 */
+  --border: #e4e4e7;      /* zinc-200 — 구분선 */
+  --muted: #71717a;       /* zinc-500 — 보조 텍스트 */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #fafafa;
+    --surface: #111113;
+    --border: #27272a;
+    --muted: #a1a1aa;
   }
 }
 
+/* ─── Tailwind Theme ─────────────────────────────────────────────────────── */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Print (PDF) ────────────────────────────────────────────────────────── */
+
+@media print {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+    --surface: #ffffff;
+    --border: #cccccc;
+    --muted: #555555;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+
+  /* 인쇄 시 외부 링크 URL 노출 */
+  a[href^="http"]::after,
+  a[href^="https"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #444444;
+    word-break: break-all;
+  }
+
+  /* 링크 텍스트가 이미 URL인 경우 중복 억제 */
+  .no-print-url::after {
+    content: none !important;
+  }
 }
