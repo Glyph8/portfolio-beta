@@ -120,7 +120,7 @@ function ArchitectureDiagram() {
 
 export default function TimeTogetherPage() {
   return (
-    <article className="mx-auto w-full max-w-3xl px-6 py-16 print:py-8">
+    <article className="mx-auto w-full max-w-3xl px-6 py-16 print:py-8 bg-gray-50 print:bg-white">
 
       {/* ── 뒤로가기 — 인쇄 시 숨김 ── */}
       <Link
@@ -202,6 +202,33 @@ export default function TimeTogetherPage() {
             result="메시지 전송 성공률 99.9% 달성. 복호화 지연 시간 100 ms 미만 유지. WebSocket 재연결 이벤트에서 메시지 유실 건수 0건 — 큐잉된 메시지가 재연결 후 순서 보장하여 전달됨."
           />
 
+        </div>
+      </section>
+
+      {/*
+       * ── E2EE 인터랙티브 다이어그램 ──────────────────────────────────────
+       * CLAUDE.md '선택적 인터랙션': E2EE 키 교환처럼 설명이 복잡한 기술적
+       * 의사결정에 한해 인터랙티브 시각화를 허용.
+       * 현재는 <E2EEVisualizer /> 컴포넌트가 들어갈 자리(Placeholder)만 확보.
+       * 웹 전용 위젯이므로 print:hidden 처리 — 인쇄본에 빈 박스가 노출되지 않음.
+       */}
+      <section className="mt-14 print:hidden">
+        <p className="mb-6 border-t border-border pt-8 font-mono text-xs font-medium uppercase tracking-[0.25em] text-muted">
+          인터랙티브 다이어그램
+        </p>
+
+        {/* TODO: <E2EEVisualizer /> 로 교체 예정 */}
+        <div className="border border-dashed border-border bg-white px-6 py-12 text-center">
+          <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted">
+            Coming Soon
+          </p>
+          <p className="mt-2 text-sm font-semibold text-foreground">
+            E2EE 키 교환 흐름
+          </p>
+          <p className="mx-auto mt-2 max-w-sm text-xs leading-relaxed text-muted">
+            서버가 메시지를 읽을 수 없음을 증명하는 인터랙티브 다이어그램 —
+            X3DH 공개키 교환 과정을 Alice · Server · Bob 3자 관점에서 단계별로 시각화
+          </p>
         </div>
       </section>
 

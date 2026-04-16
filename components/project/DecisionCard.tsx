@@ -42,7 +42,7 @@ export default function DecisionCard({
      * print:break-inside-avoid
      * — 카드 전체가 페이지 경계에서 잘리지 않도록 보장
      */
-    <article className="border border-border bg-surface print:break-inside-avoid">
+    <article className="border border-border bg-white print:break-inside-avoid">
 
       {/* ── 카드 헤더: 제목 + 태그 ── */}
       <div className="border-b border-border px-5 py-4">
@@ -70,30 +70,25 @@ export default function DecisionCard({
           <div key={label} className="px-5 py-4">
 
             {/*
-             * 레이블 계층:
-             *   Context / Problem / Action → text-muted  (배경 정보)
-             *   Result                     → text-foreground (결과값 강조)
+             * 레이블: 4개 모두 동일한 최고 명도 — 면접관 스캔 시 어느 행이든 즉시 인지
+             * text-sm(14px) + font-bold + tracking-widest + text-gray-900(가장 진함)
              */}
-            <p
-              className={[
-                "mb-1.5 text-[11px] font-semibold uppercase tracking-[0.18em]",
-                isResult ? "text-foreground" : "text-muted",
-              ].join(" ")}
-            >
+            <p className="mb-2 text-sm font-bold uppercase tracking-widest text-gray-900">
               {label}
             </p>
 
             {/*
-             * 내용 계층:
-             *   Context / Problem / Action → text-muted   (경위·배경)
-             *   Result                     → text-foreground font-semibold (달성 수치)
+             * 본문 계층:
+             *   Context / Problem / Action → text-gray-700 (경위·배경, 읽기 편한 명도)
+             *   Result                     → font-semibold text-gray-900 (달성 수치, 가장 진함)
+             * leading-relaxed(1.625) — 긴 문장에서도 줄 간격이 숨 막히지 않도록
              */}
             <p
               className={[
-                "text-sm leading-6",
+                "text-sm leading-relaxed",
                 isResult
-                  ? "font-semibold text-foreground"
-                  : "text-muted",
+                  ? "font-semibold text-gray-900"
+                  : "text-gray-700",
               ].join(" ")}
             >
               {content}
