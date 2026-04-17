@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import DecisionCard from "@/components/project/DecisionCard";
+import { TIMETOGETHER_DECISIONS } from "@/data/projectDetails";
 
 export const metadata: Metadata = {
   title: "TimeTogether",
@@ -183,25 +184,9 @@ export default function TimeTogetherPage() {
         </p>
 
         <div className="space-y-6">
-
-          <DecisionCard
-            title="종단간 암호화(E2EE) 도입"
-            tags={["Signal Protocol", "X3DH", "공개키 교환", "WebSocket"]}
-            context="실시간 채팅 서비스에서 개인정보 보호와 메시지 보안이 최우선 과제였음. 서비스의 핵심 신뢰 기반은 '대화 내용을 운영자조차 열람할 수 없다'는 보장에 있었음."
-            problem="중앙 서버가 메시지를 평문으로 저장·중계하는 구조에서는 DB 유출, 내부자 열람, 중간자 공격(MITM) 등 다양한 경로로 메시지 원문이 노출될 수 있었음."
-            action="Signal Protocol의 X3DH(Extended Triple Diffie-Hellman) 공개키 교환 방식을 도입. 각 클라이언트가 키 쌍을 로컬에서 생성하고, 서버는 공개키만 등록·중계함. 세션 키는 두 클라이언트 간에서만 합의되며, 서버는 암호화된 바이트스트림만 전달하고 복호화에 필요한 정보를 보유하지 않도록 설계."
-            result="서버 측 메시지 가독성 0% 달성. 데이터베이스 유출 시 원문 복구 불가능 구조 확보. 보안 신뢰도 100% — 운영자 포함 서버 접근 권한자 누구도 메시지 원문을 열람할 수 없음."
-          />
-
-          <DecisionCard
-            title="암호화 상태 관리 아키텍처 설계"
-            tags={["Zustand", "Custom Hook", "WebSocket", "메시지 큐잉"]}
-            context="E2EE 도입으로 클라이언트가 암호화 키 관리, 세션 상태, WebSocket 연결 생명주기, 실시간 메시지 큐 등 복잡한 상태를 단독으로 처리해야 했음."
-            problem="React 컴포넌트 로컬 State만으로는 키 동기화 범위가 컴포넌트 트리에 종속되어, WebSocket 재연결 시 세션 키 소실 및 메시지 유실이 발생할 수 있었음. 암호화 상태와 UI 상태의 결합도가 높아 테스트와 유지보수도 어려웠음."
-            action="Zustand로 '암호화 키 저장소(keyStore)'와 '채팅 메시지 상태(chatStore)'를 독립 슬라이스로 분리. 컴포넌트 외부에서도 접근 가능한 전역 저장소로 구성하여 WebSocket 재연결 후에도 키 컨텍스트가 유지되도록 설계. WebSocket 생명주기(연결·재연결·메시지 큐잉·해제)를 전담하는 커스텀 훅 useChatSession을 작성하여 UI 컴포넌트의 관심사를 분리."
-            result="메시지 전송 성공률 99.9% 달성. 복호화 지연 시간 100 ms 미만 유지. WebSocket 재연결 이벤트에서 메시지 유실 건수 0건 — 큐잉된 메시지가 재연결 후 순서 보장하여 전달됨."
-          />
-
+          {TIMETOGETHER_DECISIONS.map((decision) => (
+            <DecisionCard key={decision.title} {...decision} />
+          ))}
         </div>
       </section>
 
