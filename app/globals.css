@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* ─── Design Tokens ──────────────────────────────────────────────────────── */
 
@@ -41,6 +42,54 @@ body {
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Prose Table (Whitepaper 스타일 오버라이드) ─────────────────────────── */
+/*
+ * @tailwindcss/typography 기본 스타일은 둥근 모서리와 두꺼운 헤더 배경을 씀.
+ * 백서(Whitepaper) 스타일에 맞게 얇은 1px 구분선과 무배경 헤더로 재정의.
+ */
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;  /* 13px — prose-sm 기준값 */
+  line-height: 1.6;
+}
+
+.prose thead {
+  border-bottom: 1px solid var(--border);
+}
+
+.prose thead th {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--foreground);
+  background: transparent;
+  border: none;
+}
+
+/* 첫 번째 열은 좌측 패딩 없이 — 본문 텍스트와 시작점 정렬 */
+.prose thead th:first-child,
+.prose tbody td:first-child {
+  padding-left: 0;
+}
+
+.prose tbody tr {
+  border-bottom: 1px solid var(--border);
+}
+
+/* 마지막 행 하단 구분선 제거 */
+.prose tbody tr:last-child {
+  border-bottom: none;
+}
+
+.prose tbody td {
+  padding: 0.5rem 0.75rem;
+  color: var(--muted);
+  vertical-align: top;
+  border: none;
 }
 
 /* ─── Print (PDF) ────────────────────────────────────────────────────────── */
