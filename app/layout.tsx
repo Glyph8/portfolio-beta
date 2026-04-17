@@ -16,6 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: [
+      // {url: '/portfolio-beta-favicon.svg', type: 'image/svg+xml'},
+      {url: '/favicon.png', type: 'image/png'},
+      // {url: '/favicon.ico'}
+    ],
+  },
   title: {
     default: "강동윤(Dean) — 풀스택 엔지니어",
     template: "%s | 강동윤",
@@ -24,7 +31,7 @@ export const metadata: Metadata = {
     "보안(E2EE)과 인프라(배포/DB) 아키텍처를 깊이 이해하고, Next.js로 구현하는 T자형 풀스택 엔지니어 강동윤의 포트폴리오입니다.",
   keywords: [
     "강동윤",
-    "Dean Kang",
+    "Dongyun Kang",
     "풀스택 엔지니어",
     "Full-stack Engineer",
     "Next.js",
@@ -36,12 +43,12 @@ export const metadata: Metadata = {
     "AWS EC2",
     "포트폴리오",
   ],
-  authors: [{ name: "강동윤 (Dean Kang)" }],
+  authors: [{ name: "강동윤 (Dongyun Kang)" }],
   openGraph: {
     type: "website",
     locale: "ko_KR",
     siteName: "강동윤 포트폴리오",
-    title: "강동윤(Dean) — 풀스택 엔지니어",
+    title: "강동윤(Dongyun Kang) — 풀스택 엔지니어",
     description:
       "보안(E2EE)과 인프라(배포/DB) 아키텍처를 깊이 이해하고, Next.js로 구현하는 T자형 풀스택 엔지니어",
   },
