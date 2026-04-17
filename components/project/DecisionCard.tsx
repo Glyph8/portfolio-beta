@@ -67,7 +67,7 @@ export default function DecisionCard({
       {/* ── CPAR 섹션: divide-y 로 각 행 사이 1px 구분선 ── */}
       <div className="divide-y divide-border">
         {sections.map(({ label, content, isResult }) => (
-          <div key={label} className="px-5 py-4">
+          <div key={label} className="px-5 py-4 print:break-inside-avoid">
 
             {/*
              * 레이블: 4개 모두 동일한 최고 명도 — 면접관 스캔 시 어느 행이든 즉시 인지
