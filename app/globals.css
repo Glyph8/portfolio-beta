@@ -44,6 +44,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─── /print 페이지 전용: Navbar·Footer 웹 뷰에서도 숨김 ────────────────── */
+/*
+ * [data-print-page] 속성을 가진 요소가 body 안에 존재할 때,
+ * body의 직계 자식인 <header>(Navbar)와 <footer>(Footer)를 숨김.
+ * — CSS :has() 선택자 활용 (Chrome 105+, Safari 15.4+, Firefox 121+ 지원)
+ * — print:hidden 과 달리 웹 뷰에서도 즉시 적용되어 순수 콘텐츠만 노출
+ */
+body:has([data-print-page]) > header,
+body:has([data-print-page]) > footer {
+  display: none;
+}
+
 /* ─── Prose Table (Whitepaper 스타일 오버라이드) ─────────────────────────── */
 /*
  * @tailwindcss/typography 기본 스타일은 둥근 모서리와 두꺼운 헤더 배경을 씀.
@@ -94,6 +106,16 @@ body {
 
 /* ─── Print (PDF) ────────────────────────────────────────────────────────── */
 
+/*
+ * @page margin: 0
+ * — 브라우저가 기본으로 찍어내는 날짜·URL·페이지 번호(머리글/바닥글)를 제거.
+ * — 페이지 여백 영역 자체를 0으로 만들어 브라우저 UI가 들어갈 공간을 없앰.
+ *   실제 본문 여백은 아래 body padding으로 별도 확보.
+ */
+@page {
+  margin: 0;
+}
+
 @media print {
   :root {
     --background: #ffffff;
@@ -107,7 +129,12 @@ body {
     background-color: #ffffff !important;
     color: #000000 !important;
     font-size: 11pt;
-    line-height: 1.6;
+    line-height: 1.5;
+    /*
+     * @page margin: 0 으로 인해 본문이 종이 끝에 붙는 것을 방지.
+     * 상하 1.4cm · 좌우 1.8cm — A4 기준 적절한 내지 여백.
+     */
+    padding: 1.4cm 1.8cm;
   }
 
   /* 인쇄 시 외부 링크 URL 노출 */

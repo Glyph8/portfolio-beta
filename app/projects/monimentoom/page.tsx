@@ -13,12 +13,12 @@ export const metadata: Metadata = {
 
 export default function MonimentoomPage() {
   return (
-    <article className="mx-auto w-full max-w-3xl px-6 py-16 print:py-8 bg-gray-50 print:bg-white">
+    <article className="mx-auto w-full max-w-3xl px-6 py-16 print:py-8 bg-gray-50 print:bg-white print:break-before-page">
 
-      {/* ── 뒤로가기 — 인쇄 시 숨김 ── */}
+      {/* ── 뒤로가기 ── */}
       <Link
         href="/"
-        className="print:hidden mb-10 inline-flex items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-foreground"
+        className="mb-10 inline-flex items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-foreground"
       >
         ← 목록으로
       </Link>

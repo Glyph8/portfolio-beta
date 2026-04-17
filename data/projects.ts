@@ -4,6 +4,7 @@ export type Metric = {
   after: string;
 };
 
+/** 대표 프로젝트 — 불릿 3줄 + Before/After 지표 필수 */
 export type Project = {
   name: string;
   period: string;
@@ -12,6 +13,16 @@ export type Project = {
   href: string;
   bullets: [string, string, string]; // 정확히 3줄 요약
   metrics: Metric[];
+};
+
+/** 서브 프로젝트 — 핵심 성과 2줄, 지표 없음 */
+export type OtherProject = {
+  name: string;
+  period: string;
+  role: string;
+  stack: string[];
+  note?: string;          // "중단", "팀 프로젝트" 등 부가 컨텍스트
+  bullets: [string, string];
 };
 
 export const PROJECT_DATA: Project[] = [
@@ -28,7 +39,7 @@ export const PROJECT_DATA: Project[] = [
     ],
     metrics: [
       { label: "E2EE 커버리지", before: "0 %", after: "100 %" },
-      { label: "페이지 LCP", before: "3.2 s", after: "1.4 s" },
+      { label: "페이지 LCP",    before: "3.2 s", after: "1.4 s" },
     ],
   },
   {
@@ -43,8 +54,32 @@ export const PROJECT_DATA: Project[] = [
       "JPA N+1 문제를 @EntityGraph로 해결; 목록 조회 API 쿼리 21회 → 1회로 감소",
     ],
     metrics: [
-      { label: "배포 다운타임", before: "수 분", after: "0 분" },
+      { label: "배포 다운타임", before: "수 분",  after: "0 분" },
       { label: "목록 API 쿼리", before: "21 회", after: "1 회" },
+    ],
+  },
+];
+
+export const OTHER_PROJECT_DATA: OtherProject[] = [
+  {
+    name: "BlockGuard",
+    period: "2025.03 — 2025.08",
+    role: "Frontend",
+    stack: ["React", "TypeScript", "Web Workers"],
+    bullets: [
+      "하이브리드 파일 처리 최적화 — 소용량 File API · 대용량 Web Worker 분기 처리로 UI 블로킹 제거",
+      "KUIT 5기 기획·디자인·개발 다학제간 팀 프로젝트 — 최우수상 수상",
+    ],
+  },
+  {
+    name: "Charcoal",
+    period: "2023.12 — 2024.05",
+    role: "Frontend",
+    stack: ["Next.js", "React Hook Form", "Zod", "TypeScript"],
+    note: "중단",
+    bullets: [
+      "RHF + Zod 기반 폼 유효성 검증 및 에러 처리 아키텍처 설계",
+      "Config 객체 기반 동적 폼 생성으로 UI 컴포넌트 재사용 구조 확보",
     ],
   },
 ];

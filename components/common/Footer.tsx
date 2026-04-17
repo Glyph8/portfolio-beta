@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="print:hidden border-t border-border">
@@ -18,6 +20,14 @@ export default function Footer() {
           >
             Email
           </a>
+          {/* 전체 인쇄 페이지 — 소형 구분선 뒤에 배치 */}
+          <span className="select-none text-border" aria-hidden>·</span>
+          <Link
+            href="/print"
+            className="font-mono text-xs transition-colors hover:text-foreground"
+          >
+            전체 인쇄
+          </Link>
         </div>
       </div>
     </footer>

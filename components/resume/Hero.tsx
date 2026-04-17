@@ -2,7 +2,7 @@ import PrintButton from "./PrintButton";
 
 export default function Hero() {
   return (
-    <section className="mx-auto w-full max-w-3xl px-6 py-20 print:py-10">
+    <section className="mx-auto w-full max-w-3xl px-6 py-20 print:py-5">
 
       {/* ── 레이블: 12px + 자간 0.25em + 대문자 → '이름' 앞의 계층 선언 ── */}
       <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.25em] text-muted">
@@ -15,7 +15,7 @@ export default function Hero() {
       </h1>
 
       {/* ── 구분선: 여백을 구조화하는 단일 1px 선 ── */}
-      <div className="my-8 border-t border-border" />
+      <div className="my-8 border-t border-border print:my-3" />
 
       {/* ── 핵심 메시지: 본문은 muted, 키워드만 foreground/semibold ── */}
       <p className="max-w-xl text-base leading-8 text-muted">
@@ -32,7 +32,7 @@ export default function Hero() {
       </p>
 
       {/* ── 연락처 + 액션 ── */}
-      <div className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-3 text-sm">
+      <div className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-3 text-sm print:mt-4">
 
         {/* 이메일 — 웹: 클릭 가능 / 인쇄: mailto라 텍스트 자체가 주소 */}
         <a

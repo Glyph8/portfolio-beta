@@ -58,8 +58,8 @@ const EXPERIENCE: ExperienceCategory[] = [
         ],
       },
       {
-        period: "",
-        title: "소프트웨어학과 졸업",
+        period: "2019.03 — 2026.08",
+        title: "소프트웨어학과 졸업예정",
         org: "건국대학교",
       },
     ],
@@ -77,16 +77,16 @@ const EXPERIENCE: ExperienceCategory[] = [
 
 export default function Experience() {
   return (
-    <section className="mx-auto w-full max-w-3xl px-6 pb-20 print:pb-10">
+    <section className="mx-auto w-full max-w-3xl px-6 pb-20 print:pb-6">
 
       {/* ── 섹션 레이블 ── */}
-      <p className="mb-10 border-t border-border pt-8 font-mono text-xs font-medium uppercase tracking-[0.25em] text-muted">
+      <p className="mb-10 border-t border-border pt-8 font-mono text-xs font-medium uppercase tracking-[0.25em] text-muted print:mb-4 print:pt-4">
         Experience
       </p>
 
-      <div className="space-y-10">
+      <div className="space-y-10 print:space-y-5">
         {EXPERIENCE.map((category) => (
-          <div key={category.label}>
+          <div key={category.label} className="print:break-inside-avoid">
 
             {/* ── 카테고리 레이블 ── */}
             <p className="mb-4 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-900">
@@ -102,7 +102,7 @@ export default function Experience() {
                  */
                 <div
                   key={item.title}
-                  className="flex gap-6 py-4 print:break-inside-avoid"
+                  className="flex gap-6 py-4 print:py-2 print:break-inside-avoid"
                 >
                   {/* 왼쪽: 기간 */}
                   <p className="w-32 shrink-0 font-mono text-xs leading-5 text-gray-500">

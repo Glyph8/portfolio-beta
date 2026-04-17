@@ -1,24 +1,23 @@
 import Link from "next/link";
-import { PROJECT_DATA } from "@/data/projects";
+import { PROJECT_DATA, OTHER_PROJECT_DATA } from "@/data/projects";
 
 export default function ProjectSummary() {
   return (
     <section
       id="projects"
-      className="mx-auto w-full max-w-3xl px-6 pb-20 print:pb-10"
+      className="mx-auto w-full max-w-3xl px-6 pb-20 print:pb-6"
     >
-      {/* ── 섹션 레이블: Skills·Hero와 동일한 타이포그래피 규칙 ── */}
-      <p className="mb-10 border-t border-border pt-8 font-mono text-xs font-medium uppercase tracking-[0.25em] text-muted">
-        Projects
+
+      {/* ════════════════════════════════════════════════
+          SELECTED PROJECTS
+          — 대표 프로젝트: 3줄 요약 + Before/After 지표
+          ════════════════════════════════════════════════ */}
+      <p className="mb-10 border-t border-border pt-8 font-mono text-xs font-medium uppercase tracking-[0.25em] text-muted print:mb-4 print:pt-4">
+        Selected Projects
       </p>
 
-      {/* ── 프로젝트 목록 ── */}
-      <div className="space-y-14">
+      <div className="space-y-14 print:space-y-7">
         {PROJECT_DATA.map((project) => (
-          /*
-           * print:break-inside-avoid
-           * — 제목·불릿·지표까지 하나의 프로젝트 블록이 페이지 경계에서 잘리지 않도록 보장
-           */
           <div key={project.name} className="print:break-inside-avoid">
 
             {/* ── 헤더: 프로젝트 이름 + 상세 링크 ── */}
@@ -36,9 +35,7 @@ export default function ProjectSummary() {
 
             {/* ── 메타: 기간 · 역할 · 기술 스택 ── */}
             <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5">
-              <span className="font-mono text-xs text-muted">
-                {project.period}
-              </span>
+              <span className="font-mono text-xs text-muted">{project.period}</span>
               <span className="select-none text-border" aria-hidden>·</span>
               <span className="font-mono text-xs text-muted">{project.role}</span>
             </div>
@@ -46,14 +43,10 @@ export default function ProjectSummary() {
               {project.stack.join(" · ")}
             </p>
 
-            {/* ── 3줄 요약: 얇은 구분선 이후 불릿 리스트 ── */}
-            <ul className="mt-5 space-y-2.5 border-t border-border pt-5">
+            {/* ── 3줄 요약 ── */}
+            <ul className="mt-5 space-y-2.5 border-t border-border pt-5 print:mt-3 print:pt-3">
               {project.bullets.map((bullet) => (
                 <li key={bullet} className="flex gap-3 text-sm text-muted">
-                  {/*
-                   * 불릿 마커를 독립 span으로 분리해
-                   * 텍스트가 줄바꿈될 때 들여쓰기가 유지되도록 처리
-                   */}
                   <span
                     className="mt-[0.35rem] h-1 w-1 shrink-0 rounded-full bg-border"
                     aria-hidden
@@ -64,38 +57,17 @@ export default function ProjectSummary() {
             </ul>
 
             {/* ── Before / After 지표 ── */}
-            <div className="mt-5 border-t border-border pt-5">
+            <div className="mt-5 border-t border-border pt-5 print:mt-3 print:pt-3">
               <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-foreground">
                 Result
               </p>
               <div className="space-y-2">
                 {project.metrics.map((m) => (
-                  <div
-                    key={m.label}
-                    className="flex items-baseline gap-3 text-sm"
-                  >
-                    {/* 지표 레이블 */}
-                    <span className="w-28 shrink-0 text-xs text-muted">
-                      {m.label}
-                    </span>
-
-                    {/* Before: muted 회색 — 개선 이전 수치 */}
-                    <span className="font-mono text-sm text-muted">
-                      {m.before}
-                    </span>
-
-                    {/* 화살표: border 색상(거의 투명)으로 전환을 암시 */}
-                    <span
-                      className="select-none font-mono text-xs text-border"
-                      aria-hidden
-                    >
-                      →
-                    </span>
-
-                    {/* After: foreground + semibold — 시선이 자연스럽게 도달하는 결과값 */}
-                    <span className="font-mono font-semibold text-foreground">
-                      {m.after}
-                    </span>
+                  <div key={m.label} className="flex items-baseline gap-3 text-sm">
+                    <span className="w-28 shrink-0 text-xs text-muted">{m.label}</span>
+                    <span className="font-mono text-sm text-muted">{m.before}</span>
+                    <span className="select-none font-mono text-xs text-border" aria-hidden>→</span>
+                    <span className="font-mono font-semibold text-foreground">{m.after}</span>
                   </div>
                 ))}
               </div>
@@ -104,6 +76,61 @@ export default function ProjectSummary() {
           </div>
         ))}
       </div>
+
+      {/* ════════════════════════════════════════════════
+          OTHER PROJECTS
+          — 콤팩트 리스트: 제목·기간·핵심 성과 2줄
+            지표(Result) 영역 없음
+          ════════════════════════════════════════════════ */}
+      <p className="mb-6 mt-16 border-t border-border pt-8 font-mono text-xs font-medium uppercase tracking-[0.25em] text-muted print:mb-4 print:mt-8 print:pt-4">
+        Other Projects
+      </p>
+
+      <div className="divide-y divide-border">
+        {OTHER_PROJECT_DATA.map((project) => (
+          <div key={project.name} className="py-5 print:py-3 print:break-inside-avoid">
+
+            {/* ── 헤더 행 ── */}
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
+              <h3 className="text-base font-bold tracking-tight text-foreground">
+                {project.name}
+              </h3>
+              {project.note && (
+                /*
+                 * note 배지 — "중단" 같은 컨텍스트를 foreground 대비 낮은
+                 * border+muted 조합으로 표현. 장식이 아니라 사실 전달 목적.
+                 */
+                <span className="border border-border px-1.5 py-px font-mono text-[10px] text-muted">
+                  {project.note}
+                </span>
+              )}
+              <span className="font-mono text-xs text-muted">{project.period}</span>
+              <span className="select-none text-border" aria-hidden>·</span>
+              <span className="font-mono text-xs text-muted">{project.role}</span>
+            </div>
+
+            {/* ── 스택 ── */}
+            <p className="mt-0.5 font-mono text-xs text-muted/70">
+              {project.stack.join(" · ")}
+            </p>
+
+            {/* ── 핵심 성과 2줄 ── */}
+            <ul className="mt-3 space-y-1.5">
+              {project.bullets.map((bullet) => (
+                <li key={bullet} className="flex gap-3 text-sm text-muted">
+                  <span
+                    className="mt-[0.35rem] h-1 w-1 shrink-0 rounded-full bg-border"
+                    aria-hidden
+                  />
+                  <span className="leading-6">{bullet}</span>
+                </li>
+              ))}
+            </ul>
+
+          </div>
+        ))}
+      </div>
+
     </section>
   );
 }

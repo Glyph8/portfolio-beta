@@ -42,8 +42,8 @@ export default function DecisionCard({
      * print:break-inside-avoid
      * — 카드 전체가 페이지 경계에서 잘리지 않도록 보장
      */
-    <article className="border border-border bg-white print:break-inside-avoid">
-
+    // <article className="border border-border bg-white print:break-inside-avoid">
+    <article className="border border-border bg-white">
       {/* ── 카드 헤더: 제목 + 태그 ── */}
       <div className="border-b border-border px-5 py-4">
         <h3 className="text-base font-bold tracking-tight text-foreground">

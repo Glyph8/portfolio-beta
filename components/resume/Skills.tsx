@@ -85,15 +85,15 @@ const categories: Category[] = [
 
 export default function Skills() {
   return (
-    <section className="mx-auto w-full max-w-3xl px-6 pb-20 print:pb-10">
+    <section className="mx-auto w-full max-w-3xl px-6 pb-20 print:pb-6">
 
       {/* ── 섹션 레이블: Hero의 'Full-stack Developer' 레이블과 동일 타이포 ── */}
-      <p className="mb-10 border-t border-border pt-8 font-mono text-xs font-medium uppercase tracking-[0.25em] text-muted">
+      <p className="mb-10 border-t border-border pt-8 font-mono text-xs font-medium uppercase tracking-[0.25em] text-muted print:mb-4 print:pt-4">
         Skills
       </p>
 
       {/* ── 카테고리 목록 ── */}
-      <div className="space-y-10">
+      <div className="space-y-10 print:space-y-5">
         {categories.map((category) => (
           /*
            * print:break-inside-avoid

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import DecisionCard from "@/components/project/DecisionCard";
+import TimeTogetherDiagram from "@/components/project/TimeTogetherDiagram";
 import { TIMETOGETHER_DECISIONS } from "@/data/projectDetails";
 
 export const metadata: Metadata = {
@@ -8,125 +9,16 @@ export const metadata: Metadata = {
   // layout.tsx 의 template 으로 "TimeTogether | 강동윤" 으로 렌더링
 };
 
-/* ── 아키텍처 다이어그램: 텍스트/CSS 박스 ────────────────────────────────── */
-
-/**
- * 레이어 내부 모듈 박스 하나.
- * `gap-px bg-border p-px` 그리드 기법으로 인접 셀 사이에 1px 경계선을 형성.
- */
-function ModuleBox({
-  name,
-  desc,
-}: {
-  name: string;
-  desc: string;
-}) {
-  return (
-    <div className="bg-surface px-4 py-3">
-      <p className="font-mono text-xs font-semibold text-foreground">{name}</p>
-      <p className="font-mono text-[11px] text-muted">{desc}</p>
-    </div>
-  );
-}
-
-function ArchitectureDiagram() {
-  return (
-    <div className="space-y-0">
-
-      {/* ── CLIENT 레이어 ── */}
-      <div className="border border-border">
-        {/* 레이어 헤더 */}
-        <div className="border-b border-border bg-surface px-4 py-2">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-            Client
-          </span>
-          <span className="ml-2 font-mono text-[11px] text-muted">
-            Browser / Next.js App Router
-          </span>
-        </div>
-
-        {/*
-         * gap-px bg-border p-px 기법:
-         * 그리드 컨테이너를 border 색으로 채우고, 각 셀을 bg-surface 로 덮으면
-         * 셀 사이 1px 간격이 구분선으로 보임 — 별도 border 없이 표 효과
-         */}
-        <div className="grid grid-cols-2 gap-px bg-border p-px">
-          <ModuleBox
-            name="Next.js App Router"
-            desc="Server Components · SSR · 페이지 라우팅"
-          />
-          <ModuleBox
-            name="React UI Layer"
-            desc="컴포넌트 트리 · 선언형 렌더링"
-          />
-          <ModuleBox
-            name="Zustand Store"
-            desc="암호화 키 저장소 · 채팅 상태 관리"
-          />
-          <ModuleBox
-            name="E2EE Module"
-            desc="Signal Protocol · X3DH 공개키 교환"
-          />
-          <ModuleBox
-            name="WebSocket Client"
-            desc="연결 생명주기 · 재연결 · 메시지 큐잉"
-          />
-          <ModuleBox
-            name="Custom Hooks"
-            desc="useChatSession · useEncryption"
-          />
-        </div>
-      </div>
-
-      {/* ── 네트워크 경계 표시 ── */}
-      <div className="flex items-center gap-0 py-2">
-        {/*
-         * dashed border: 논리적 경계(암호화 레이어)를 표현.
-         * 아키텍처 다이어그램 관례상 점선 = 네트워크/논리 경계.
-         */}
-        <div className="flex-1 border-t border-dashed border-border" />
-        <span className="shrink-0 px-3 font-mono text-[11px] text-muted">
-          암호화된 메시지만 전송 — 서버 측 평문 접근 불가
-        </span>
-        <div className="flex-1 border-t border-dashed border-border" />
-      </div>
-
-      {/* ── SERVER 레이어 ── */}
-      <div className="border border-border">
-        <div className="border-b border-border bg-surface px-4 py-2">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-            Server
-          </span>
-          <span className="ml-2 font-mono text-[11px] text-muted">
-            Spring Boot
-          </span>
-        </div>
-        <div className="grid grid-cols-2 gap-px bg-border p-px">
-          <ModuleBox
-            name="WebSocket Broker"
-            desc="메시지 중계 전용 · 복호화 불가"
-          />
-          <ModuleBox
-            name="REST API"
-            desc="사용자 인증 · 채팅방 관리"
-          />
-        </div>
-      </div>
-
-    </div>
-  );
-}
-
 /* ── 페이지 ─────────────────────────────────────────────────────────────── */
 
 export default function TimeTogetherPage() {
   return (
-    <article className="mx-auto w-full max-w-3xl px-6 py-16 print:py-8 bg-gray-50 print:bg-white">
+    <article className="mx-auto w-full max-w-3xl px-6 py-16 print:py-8 bg-gray-50 print:bg-white print:break-before-page">
 
-      {/* ── 뒤로가기 — 인쇄 시 숨김 ── */}
+      {/* ── 뒤로가기 ── */}
       <Link
         href="/"
-        className="print:hidden mb-10 inline-flex items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-foreground"
+        className="mb-10 inline-flex items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-foreground"
       >
         ← 목록으로
       </Link>
@@ -174,7 +66,7 @@ export default function TimeTogetherPage() {
         <p className="mb-6 border-t border-border pt-8 font-mono text-xs font-medium uppercase tracking-[0.25em] text-muted">
           클라이언트 아키텍처
         </p>
-        <ArchitectureDiagram />
+        <TimeTogetherDiagram />
       </section>
 
       {/* ── 기술 의사결정 ── */}
