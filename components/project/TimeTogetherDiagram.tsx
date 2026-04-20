@@ -25,7 +25,7 @@ export default function TimeTogetherDiagram() {
             Client
           </span>
           <span className="ml-2 font-mono text-[11px] text-muted">
-            Browser / Next.js App Router
+            Browser / Next.js 16 App Router
           </span>
         </div>
         {/*
@@ -34,12 +34,12 @@ export default function TimeTogetherDiagram() {
          * 셀 사이 1px 간격이 구분선으로 보임 — 별도 border 선언 없이 표 효과
          */}
         <div className="grid grid-cols-2 gap-px bg-border p-px">
-          <ModuleBox name="Next.js App Router"  desc="Server Components · SSR · 페이지 라우팅" />
-          <ModuleBox name="React UI Layer"      desc="컴포넌트 트리 · 선언형 렌더링" />
-          <ModuleBox name="Zustand Store"       desc="암호화 키 저장소 · 채팅 상태 관리" />
-          <ModuleBox name="E2EE Module"         desc="Signal Protocol · X3DH 공개키 교환" />
-          <ModuleBox name="WebSocket Client"    desc="연결 생명주기 · 재연결 · 메시지 큐잉" />
-          <ModuleBox name="Custom Hooks"        desc="useChatSession · useEncryption" />
+          <ModuleBox name="App Router + RSC"    desc="서버 컴포넌트 · 라우트 그룹 (auth) · (dashboard)" />
+          <ModuleBox name="Zustand Store"        desc="AccessToken · userId 메모리 단일 소스" />
+          <ModuleBox name="TanStack Query"       desc="서버 상태 · Smart Polling · 독립 캐시 체인" />
+          <ModuleBox name="Web Crypto API"       desc="PBKDF2 · HMAC-SHA256 · AES-GCM" />
+          <ModuleBox name="IndexedDB"            desc="MasterKey · extractable=false CryptoKey" />
+          <ModuleBox name="Pointer Events Grid"  desc="When2Meet 드래그 · touchAction=none" />
         </div>
       </div>
 
@@ -47,24 +47,40 @@ export default function TimeTogetherDiagram() {
       <div className="flex items-center gap-0 py-2">
         <div className="flex-1 border-t border-dashed border-border" />
         <span className="shrink-0 px-3 font-mono text-[11px] text-muted">
-          암호화된 메시지만 전송 — 서버 측 평문 접근 불가
+          HMAC·AES-GCM 암호문만 전송 — 서버는 원본 ID·비밀번호·PII 미수신
         </span>
         <div className="flex-1 border-t border-dashed border-border" />
       </div>
 
-      {/* ── SERVER 레이어 ── */}
+      {/* ── NEXT SERVER (BFF) 레이어 ── */}
       <div className="border border-border">
         <div className="border-b border-border bg-surface px-4 py-2">
           <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-            Server
+            Next.js Server (BFF)
           </span>
           <span className="ml-2 font-mono text-[11px] text-muted">
-            Spring Boot
+            Server Actions · Route Handlers
           </span>
         </div>
         <div className="grid grid-cols-2 gap-px bg-border p-px">
-          <ModuleBox name="WebSocket Broker" desc="메시지 중계 전용 · 복호화 불가" />
-          <ModuleBox name="REST API"         desc="사용자 인증 · 채팅방 관리" />
+          <ModuleBox name="Server Actions"  desc="login · refresh · register — httpOnly 쿠키 격리" />
+          <ModuleBox name="CSP Middleware"  desc="nonce 주입 · script-src nonce 기반" />
+        </div>
+      </div>
+
+      {/* ── REMOTE BACKEND 레이어 ── */}
+      <div className="mt-0 border border-border">
+        <div className="border-b border-border bg-surface px-4 py-2">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+            Remote Backend
+          </span>
+          <span className="ml-2 font-mono text-[11px] text-muted">
+            암호문·해시값만 저장
+          </span>
+        </div>
+        <div className="grid grid-cols-2 gap-px bg-border p-px">
+          <ModuleBox name="Auth"         desc="hashedUserId · hashedPassword 검증" />
+          <ModuleBox name="Group View"   desc="encGroupId · encGroupKey · encUserId[]" />
         </div>
       </div>
 
