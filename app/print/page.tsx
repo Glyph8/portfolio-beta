@@ -20,18 +20,18 @@ const PRINT_PROJECTS = [
     title: "TimeTogether",
     period: "2024.03 — 2024.06",
     roles: "Frontend · 보안 설계",
-    stack: "Next.js · TypeScript · Zustand · WebSocket · E2EE",
+    stack: "Next.js 16 · TypeScript · Zustand · TanStack Query · Web Crypto API",
     description: (
       <>
-        실시간 그룹 채팅 서비스의{" "}
+        그룹 약속의{" "}
         <strong className="font-semibold text-foreground not-italic">
-          클라이언트 아키텍처 단독 설계 및 구현
+          시간 조율 · 장소 선정 · 일정 확정
         </strong>
-        — Signal Protocol 기반{" "}
+        을 하나의 흐름으로 묶은 모바일 우선 웹 클라이언트. 외부 암호화 라이브러리 없이{" "}
         <strong className="font-semibold text-foreground not-italic">
-          종단간 암호화(E2EE)
+          브라우저 표준 Web Crypto API만으로 E2EE
         </strong>
-        를 적용하여 서버가 메시지 원문에 접근할 수 없는 보안 구조를 달성.
+        를 구현해, ID·비밀번호·이메일·전화번호가 평문으로 서버에 도달하지 않는 구조를 달성.
       </>
     ),
     // 다이어그램 영역도 인쇄 시 높이를 제한하고 여백을 줄이도록 클래스 수정
@@ -47,20 +47,21 @@ const PRINT_PROJECTS = [
     title: "Monimentoom",
     period: "2023.09 — 2024.02",
     roles: "Backend · Infra",
-    stack: "Spring Boot · JPA · MySQL · Nginx · AWS EC2 · Docker",
+    stack: "Spring Boot · JPA · MySQL · Nginx · AWS EC2 · S3 · Docker · GitLab CI",
     description: (
       <>
+        개인 굿즈 전시 공간 서비스의 REST API·인프라를 단독 구현.{" "}
         <strong className="font-semibold text-foreground not-italic">
-          Blue-Green 무중단 배포
+          단일 EC2에서의 Blue-Green 무중단 배포
         </strong>
-        와{" "}
+        ,{" "}
         <strong className="font-semibold text-foreground not-italic">
-          JPA N+1 성능 최적화
+          S3 Presigned URL 업로드 분리
         </strong>
-        를 통해 서비스 안정성과 응답 속도를 동시에 확보한 백엔드·인프라 구현 — 배포 다운타임{" "}
+        , JPA N+1 해결로 배포 다운타임{" "}
         <strong className="font-semibold text-foreground not-italic">수 분 → 0 분</strong>
-        , 목록 API 쿼리{" "}
-        <strong className="font-semibold text-foreground not-italic">21회 → 1회</strong> 달성.
+        , 방명록 조회 쿼리{" "}
+        <strong className="font-semibold text-foreground not-italic">N+1회 → 1회</strong>를 달성.
       </>
     ),
     diagram: (

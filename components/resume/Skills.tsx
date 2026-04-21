@@ -47,7 +47,7 @@ const categories: Category[] = [
       {
         name: "JPA / Hibernate",
         purpose:
-          "엔티티 연관관계 설계, N+1 문제 탐지 및 @EntityGraph로 해결",
+          "엔티티 연관관계 설계, N+1 탐지 및 JOIN FETCH 쿼리로 해결",
       },
       {
         name: "MySQL",
@@ -77,7 +77,7 @@ const categories: Category[] = [
       {
         name: "E2EE",
         purpose:
-          "Signal Protocol 공개키 교환 기반 종단간 암호화 설계 및 클라이언트 구현",
+          "Web Crypto API(PBKDF2·HMAC-SHA256·AES-GCM)로 클라이언트 사이드 E2EE 파이프라인 구현",
       },
     ],
   },

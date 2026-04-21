@@ -40,30 +40,30 @@ export default function MonimentoomPage() {
           <span className="font-mono text-xs text-muted">Backend · Infra</span>
           <span className="select-none text-border" aria-hidden>·</span>
           <span className="font-mono text-xs text-muted">
-            Spring Boot · JPA · MySQL · Nginx · AWS EC2 · Docker
+            Spring Boot · JPA · MySQL · Nginx · AWS EC2 · S3 · Docker · GitLab CI
           </span>
         </div>
 
         {/* 한 줄 개요 — 수치 기반, 프론트엔드 언급 없음 */}
         <div className="mt-8 border-t border-border pt-6">
           <p className="max-w-xl text-base leading-8 text-muted">
+            개인 굿즈 전시 공간 서비스의 REST API·인프라를 단독 구현.{" "}
             <strong className="font-semibold text-foreground not-italic">
-              Blue-Green 무중단 배포
+              단일 EC2에서의 Blue-Green 무중단 배포
             </strong>
-            와{" "}
+            ,{" "}
             <strong className="font-semibold text-foreground not-italic">
-              JPA N+1 성능 최적화
+              S3 Presigned URL 업로드 분리
             </strong>
-            를 통해 서비스 안정성과 응답 속도를 동시에 확보한 백엔드·인프라 구현 —
-            배포 다운타임{" "}
+            , JPA N+1 해결로 배포 다운타임{" "}
             <strong className="font-semibold text-foreground not-italic">
               수 분 → 0 분
             </strong>
-            , 목록 API 쿼리{" "}
+            , 방명록 조회 쿼리{" "}
             <strong className="font-semibold text-foreground not-italic">
-              21회 → 1회
-            </strong>{" "}
-            달성.
+              N+1회 → 1회
+            </strong>
+            를 달성.
           </p>
         </div>
       </header>
