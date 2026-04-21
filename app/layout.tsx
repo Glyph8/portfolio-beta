@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     ],
   },
   title: {
-    default: "강동윤(Dean) — 풀스택 엔지니어",
+    default: "강동윤(Dongyun Kang) — 풀스택 엔지니어",
     template: "%s | 강동윤",
   },
   description:

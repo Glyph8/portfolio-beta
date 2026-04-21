@@ -19,16 +19,8 @@ export default function Hero() {
 
       {/* ── 핵심 메시지: 본문은 muted, 키워드만 foreground/semibold ── */}
       <p className="max-w-xl text-base leading-8 text-muted">
-        보안(
-        <strong className="font-semibold text-foreground not-italic">E2EE</strong>
-        )과 인프라(
-        <strong className="font-semibold text-foreground not-italic">배포/DB</strong>
-        ) 아키텍처를 깊이 있게 이해하고, 이를 사용자 친화적인 클라이언트(
-        <strong className="font-semibold text-foreground not-italic">Next.js</strong>
-        )로 구현해내는{" "}
-        <strong className="font-semibold text-foreground not-italic">
-          T자형 풀스택 엔지니어
-        </strong>
+        어떤 도메인이든 호기심과 책임감을 가지고 깊이 파고드는 것을 즐기는 엔지니어입니다.
+        어느새 프론트엔드, 백엔드, 인프라, 보안까지 폭넓게 경험하며, 기술적 깊이와 넓이를 동시에 갖춘 T자형 풀스택 개발자로 거듭나고자 합니다.
       </p>
 
       {/* ── 연락처 + 액션 ── */}
