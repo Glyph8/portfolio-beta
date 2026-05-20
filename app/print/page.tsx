@@ -7,8 +7,9 @@ import ProjectSummary from "@/components/resume/ProjectSummary";
 import Experience from "@/components/resume/Experience";
 import DecisionCard from "@/components/project/DecisionCard";
 import TimeTogetherDiagram from "@/components/project/TimeTogetherDiagram";
+import BlockGuardFlowDiagram from "@/components/project/BlockGuardFlowDiagram";
 import PrintButton from "@/components/resume/PrintButton";
-import { TIMETOGETHER_DECISIONS, MONIMENTOOM_DECISIONS } from "@/data/projectDetails";
+import { TIMETOGETHER_DECISIONS, MONIMENTOOM_DECISIONS, BLOCKGUARD_DECISIONS } from "@/data/projectDetails";
 
 export const metadata: Metadata = {
   title: "인쇄용 이력서 전체",
@@ -18,8 +19,8 @@ const PRINT_PROJECTS = [
   {
     id: "timetogether",
     title: "TimeTogether",
-    period: "2024.03 — 2024.06",
-    roles: "Frontend · 보안 설계",
+    period: "2024.03 — 2025.10",
+    roles: "Frontend 단독 구현",
     stack: "Next.js 16 · TypeScript · Zustand · TanStack Query · Web Crypto API",
     description: (
       <>
@@ -27,11 +28,11 @@ const PRINT_PROJECTS = [
         <strong className="font-semibold text-foreground not-italic">
           시간 조율 · 장소 선정 · 일정 확정
         </strong>
-        을 하나의 흐름으로 묶은 모바일 우선 웹 클라이언트. 외부 암호화 라이브러리 없이{" "}
+        을 하나의 흐름으로 묶은 모바일 우선 웹 클라이언트. 외부 암호 라이브러리 없이{" "}
         <strong className="font-semibold text-foreground not-italic">
-          브라우저 표준 Web Crypto API만으로 E2EE
+          브라우저 표준 Web Crypto API 만으로 종단간 암호화
         </strong>
-        를 구현해, ID·비밀번호·이메일·전화번호가 평문으로 서버에 도달하지 않는 구조를 달성.
+        를 구현해, 아이디 · 비밀번호 · 이메일 · 전화번호가 평문으로 서버에 도달하지 않는 구조를 달성.
       </>
     ),
     // 다이어그램 영역도 인쇄 시 높이를 제한하고 여백을 줄이도록 클래스 수정
@@ -77,6 +78,33 @@ const PRINT_PROJECTS = [
       </div>
     ),
     decisions: MONIMENTOOM_DECISIONS,
+  },
+  {
+    id: "blockguard",
+    title: "BlockGuard",
+    period: "2025.07 — 2025.08",
+    roles: "Frontend (공동 구현)",
+    stack: "React 19 · TypeScript · Vite · TanStack Query · Tailwind 4 · Lottie",
+    description: (
+      <>
+        KUIT 5기 다학제간 팀 프로젝트로 진행해{" "}
+        <strong className="font-semibold text-foreground not-italic">
+          최우수상
+        </strong>
+        을 수상한 노인 대상 보이스피싱 · 금융 사기 예방 모바일 웹.{" "}
+        <strong className="font-semibold text-foreground not-italic">
+          13단계 사기 분석 설문
+        </strong>
+        과 가족 사칭 · 대출 사기를 재현한 시뮬레이션 5종, 뉴스, 보호자 긴급 신고를 한 흐름으로 통합.
+        본인은 분석 설문 · 결과 · 시뮬레이션 · 뉴스 · 모바일 호환성 영역을 담당.
+      </>
+    ),
+    diagram: (
+      <div className="print:max-h-[260px] print:overflow-hidden">
+        <BlockGuardFlowDiagram />
+      </div>
+    ),
+    decisions: BLOCKGUARD_DECISIONS,
   },
 ];
 

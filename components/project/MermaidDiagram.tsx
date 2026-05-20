@@ -8,8 +8,18 @@ mermaid.initialize({
   theme: "neutral",
   securityLevel: "strict",
   fontFamily: "var(--font-geist-sans), ui-sans-serif, system-ui",
+  flowchart: {
+    // 노드 간 여백을 늘려 한국어 라벨이 줄바꿈된 박스들이 답답해 보이지 않도록 함
+    nodeSpacing: 36,
+    rankSpacing: 50,
+    padding: 12,
+    htmlLabels: true,
+    useMaxWidth: true,
+  },
   themeVariables: {
-    fontSize: "13px",
+    // 기존 13px 은 한국어/영문이 섞인 라벨에서 작아 보였음 → 본문(text-sm) 과
+    // 거의 동일한 14px 로 통일해 본문↔다이어그램 간 시선 이동이 매끄럽도록 함.
+    fontSize: "14px",
     primaryColor: "#ffffff",
     primaryTextColor: "#111827",
     primaryBorderColor: "#111827",
